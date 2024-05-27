@@ -30,21 +30,28 @@ public class C_cubeAtractor : MonoBehaviour
                 DetachCube();
             }
         }
+
+        if (isCubeAttached && attachedCube != null)
+        {
+            
+            float direction = playerTransform.localScale.x; 
+            attachedCube.transform.position = playerTransform.position + new Vector3(direction * distanceFromPlayer, 0, 0);
+        }
     }
 
     void AttachCube()
     {
-        Collider2D[] cubes = Physics2D.OverlapCircleAll(transform.position, attractionRadius, cubeLayer);
+        Collider2D[] cubes = Physics2D.OverlapCircleAll(playerTransform.position, attractionRadius, cubeLayer);
 
-        foreach (Collider2D cube in cubes)
+        if (cubes.Length > 0)
         {
-            if (!isCubeAttached)
-            {
-                Vector3 newPosition = playerTransform.position + (transform.position - playerTransform.position).normalized * distanceFromPlayer;
-                cube.transform.position = newPosition;
-                attachedCube = cube.gameObject;
-                isCubeAttached = true;
-            }
+            Collider2D cube = cubes[0]; 
+            attachedCube = cube.gameObject;
+            isCubeAttached = true;
+
+            float direction = playerTransform.localScale.x; 
+            Vector3 newPosition = playerTransform.position + new Vector3(direction * distanceFromPlayer, 0, 0);
+            attachedCube.transform.position = newPosition;
         }
     }
 

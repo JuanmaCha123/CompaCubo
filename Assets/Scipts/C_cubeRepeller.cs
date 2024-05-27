@@ -7,11 +7,12 @@ public class C_cubeRepeller : MonoBehaviour
     public float repulsionRadius = 5f;
     public float repulsionForce = 10f;
     public LayerMask cubeLayer;
-    public LayerMask interactableLayer; // Nueva variable para las capas interactivas
+    public float velocityThreshold = 0.1f; 
 
     private Transform playerTransform;
     private bool isCubeRepelled = false;
     private GameObject repelledCube;
+    private int originalLayer;             
 
     void Start()
     {
@@ -26,9 +27,16 @@ public class C_cubeRepeller : MonoBehaviour
             {
                 RepelCube();
             }
-            else
+        }
+
+        if (isCubeRepelled && repelledCube != null)
+        {
+            Rigidbody2D rb = repelledCube.GetComponent<Rigidbody2D>();
+            if (rb != null && rb.velocity.magnitude < velocityThreshold)
             {
-                CancelRepulsion();
+                ResetCubeLayer();
+                isCubeRepelled = false;
+                repelledCube = null;
             }
         }
     }
@@ -44,25 +52,18 @@ public class C_cubeRepeller : MonoBehaviour
                 Vector3 repulsionDirection = (cube.transform.position - playerTransform.position).normalized;
                 cube.GetComponent<Rigidbody2D>().AddForce(repulsionDirection * repulsionForce, ForceMode2D.Impulse);
                 repelledCube = cube.gameObject;
-                repelledCube.layer = LayerMask.NameToLayer("repelledCube"); 
+                originalLayer = repelledCube.layer; 
+                repelledCube.layer = LayerMask.NameToLayer("repelledCube");
                 isCubeRepelled = true;
             }
         }
     }
 
-    void CancelRepulsion()
+    void ResetCubeLayer()
     {
-        if (isCubeRepelled && repelledCube != null)
+        if (repelledCube != null)
         {
-            Rigidbody2D rb = repelledCube.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.velocity = Vector2.zero;
-            }
-
-            repelledCube.layer = LayerMask.NameToLayer("cubo"); 
-            isCubeRepelled = false;
-            repelledCube = null;
+            repelledCube.layer = originalLayer; 
         }
     }
 

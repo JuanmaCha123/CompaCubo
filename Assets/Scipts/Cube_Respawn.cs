@@ -9,6 +9,7 @@ public class Cube_Respawn : MonoBehaviour
     private bool isOutOfBounds = false;
     private float outOfBoundsTime = 0f;
     public float respawnDelay = 3f;
+    public float spawnDistance = 0.5f; // Distancia de aparición desde el jugador
 
     void Start()
     {
@@ -44,28 +45,16 @@ public class Cube_Respawn : MonoBehaviour
 
     void TeleportCube()
     {
-        Vector3 newPosition = transform.position;
+        
+        Vector3 newPosition = playerTransform.position;
 
-        float distanceX = Mathf.Abs(playerTransform.position.x - mainCamera.transform.position.x);
-        float distanceY = Mathf.Abs(playerTransform.position.y - mainCamera.transform.position.y);
+        
+        float direction = playerTransform.localScale.x;
 
-        if (playerTransform.position.x < mainCamera.transform.position.x)
-        {
-            newPosition.x = mainCamera.transform.position.x - distanceX / 2f;
-        }
-        else
-        {
-            newPosition.x = mainCamera.transform.position.x + distanceX / 2f;
-        }
-        if (playerTransform.position.y < mainCamera.transform.position.y)
-        {
-            newPosition.y = mainCamera.transform.position.y - distanceY / 2f;
-        }
-        else
-        {
-            newPosition.y = mainCamera.transform.position.y + distanceY / 2f;
-        }
+        
+        newPosition.x -= spawnDistance * direction;
 
         transform.position = newPosition;
+        isOutOfBounds = false; 
     }
 }
