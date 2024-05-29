@@ -96,10 +96,12 @@ GameObject:
   - component: {fileID: 516877626112596529}
   - component: {fileID: 3654318947657015883}
   - component: {fileID: 6255837153195418119}
+  - component: {fileID: 6565033335205657435}
   - component: {fileID: 9199527876691651928}
   - component: {fileID: 619792317845163418}
   - component: {fileID: 7993054371887796402}
-  - component: {fileID: 6565033335205657435}
+  - component: {fileID: 6207682210097351951}
+  - component: {fileID: 4281064974234555453}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -223,6 +225,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &6565033335205657435
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6565033335205657427}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 739ff960c63eb5a4fa802d53ee9a6233, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &9199527876691651928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,27 +300,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   velocityThreshold: 0.1
---- !u!95 &6565033335205657435
-Animator:
-  serializedVersion: 5
+--- !u!114 &6207682210097351951
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6565033335205657427}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 739ff960c63eb5a4fa802d53ee9a6233, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d60db7bb9725548805935ecf8ae21f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarImage: {fileID: 0}
+  playerHealth: {fileID: 0}
+--- !u!114 &4281064974234555453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6565033335205657427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e372c9c8ccf7f064ba971fc281c58d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthRegenAmount: 2
+  healthRegenInterval: 1
 --- !u!1 &7895112990501978842
 GameObject:
   m_ObjectHideFlags: 0
