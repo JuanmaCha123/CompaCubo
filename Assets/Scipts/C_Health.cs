@@ -10,11 +10,13 @@ public class C_Health : MonoBehaviour
     public float healthRegenInterval = 1f;
 
     private Coroutine healthRegenCoroutine;
+    private C_lives playerLives;
 
     void Start()
     {
         currentHealth = maxHealth;
         healthRegenCoroutine = StartCoroutine(RegenerateHealth());
+        playerLives = GetComponent<C_lives>();
     }
 
     public void TakeDamage(int damageAmount)
@@ -23,7 +25,7 @@ public class C_Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Die();
+            playerLives.DecreaseLives();
         }
     }
 
@@ -44,9 +46,5 @@ public class C_Health : MonoBehaviour
         }
     }
 
-    private void Die()
-    {
-        Debug.Log("muelto");
-        
-    }
+
 }
