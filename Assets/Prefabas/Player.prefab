@@ -102,6 +102,8 @@ GameObject:
   - component: {fileID: 7993054371887796402}
   - component: {fileID: 6207682210097351951}
   - component: {fileID: 4281064974234555453}
+  - component: {fileID: 2195309427590438042}
+  - component: {fileID: 191257327405605093}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -330,6 +332,33 @@ MonoBehaviour:
   currentHealth: 0
   healthRegenAmount: 2
   healthRegenInterval: 1
+--- !u!114 &2195309427590438042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6565033335205657427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc49e7d409da40d4e97681c45d0464b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &191257327405605093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6565033335205657427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d690de7d97fb46408852976ba7f5e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLives: 3
+  currentLives: 0
+  textMeshPro: {fileID: 0}
 --- !u!1 &7895112990501978842
 GameObject:
   m_ObjectHideFlags: 0

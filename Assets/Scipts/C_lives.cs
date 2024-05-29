@@ -2,25 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class C_lives : MonoBehaviour
 {
-    public int maxLives = 3; // Máximo número de vidas
-    public int currentLives; // Vidas actuales
+    public int maxLives = 3;
+    public int currentLives;
+    public TextMeshProUGUI textMeshPro; 
 
     void Start()
     {
-        currentLives = maxLives; // Configurar las vidas iniciales
+        currentLives = maxLives;
+        UpdateLivesUI(); 
     }
+
 
     public void DecreaseLives()
     {
-        currentLives--; // Restar una vida
+        currentLives--;
+        UpdateLivesUI();
 
         if (currentLives <= 0)
         {
-            
-            SceneManager.LoadScene("GameOverScene");
+            SceneManager.LoadScene("derrota");
         }
     }
+
+    void UpdateLivesUI()
+    {
+        textMeshPro.text = $" {currentLives} " ;
+    }
+
 }
