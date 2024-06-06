@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class C_Health : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
-    public int healthRegenAmount = 2;
-    public float healthRegenInterval = 1f;
-
+    public C_HealthData healthData;  
+    private int currentHealth;
     private Coroutine healthRegenCoroutine;
     private C_lives playerLives;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = healthData.maxHealth;
         healthRegenCoroutine = StartCoroutine(RegenerateHealth());
         playerLives = GetComponent<C_lives>();
     }
@@ -33,18 +30,23 @@ public class C_Health : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(healthRegenInterval);
+            yield return new WaitForSeconds(healthData.healthRegenInterval);
 
-            if (currentHealth < maxHealth)
+            if (currentHealth < healthData.maxHealth)
             {
-                currentHealth += healthRegenAmount;
-                if (currentHealth > maxHealth)
+                currentHealth += healthData.healthRegenAmount;
+                if (currentHealth > healthData.maxHealth)
                 {
-                    currentHealth = maxHealth;
+                    currentHealth = healthData.maxHealth;
                 }
             }
         }
     }
 
+    private void Die()
+    {
+        Debug.Log("Player has died");
+        playerLives.DecreaseLives();
+    }
 
 }

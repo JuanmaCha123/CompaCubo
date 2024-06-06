@@ -13,6 +13,7 @@ public class CheckPoint_Spot : MonoBehaviour
             {
                 playerRespawn.SetCheckpoint(transform.position);
             }
+
         }
     }
 }

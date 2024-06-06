@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class C_cubeRepeller : MonoBehaviour
 {
-    public float repulsionRadius = 5f;
-    public float repulsionForce = 10f;
-    public LayerMask cubeLayer;
-    public float velocityThreshold = 0.1f; 
+    public Cube_ConfigData cubeConfig;
 
     private Transform playerTransform;
     private bool isCubeRepelled = false;
     private GameObject repelledCube;
-    private int originalLayer;             
+    private int originalLayer;
 
     void Start()
     {
@@ -32,7 +29,7 @@ public class C_cubeRepeller : MonoBehaviour
         if (isCubeRepelled && repelledCube != null)
         {
             Rigidbody2D rb = repelledCube.GetComponent<Rigidbody2D>();
-            if (rb != null && rb.velocity.magnitude < velocityThreshold)
+            if (rb != null && rb.velocity.magnitude < cubeConfig.velocityThreshold)
             {
                 ResetCubeLayer();
                 isCubeRepelled = false;
@@ -43,16 +40,16 @@ public class C_cubeRepeller : MonoBehaviour
 
     void RepelCube()
     {
-        Collider2D[] cubes = Physics2D.OverlapCircleAll(transform.position, repulsionRadius, cubeLayer);
+        Collider2D[] cubes = Physics2D.OverlapCircleAll(transform.position, cubeConfig.repulsionRadius, cubeConfig.cubeLayer);
 
         foreach (Collider2D cube in cubes)
         {
             if (!isCubeRepelled)
             {
                 Vector3 repulsionDirection = (cube.transform.position - playerTransform.position).normalized;
-                cube.GetComponent<Rigidbody2D>().AddForce(repulsionDirection * repulsionForce, ForceMode2D.Impulse);
+                cube.GetComponent<Rigidbody2D>().AddForce(repulsionDirection * cubeConfig.repulsionForce, ForceMode2D.Impulse);
                 repelledCube = cube.gameObject;
-                originalLayer = repelledCube.layer; 
+                originalLayer = repelledCube.layer;
                 repelledCube.layer = LayerMask.NameToLayer("repelledCube");
                 isCubeRepelled = true;
             }
@@ -63,13 +60,13 @@ public class C_cubeRepeller : MonoBehaviour
     {
         if (repelledCube != null)
         {
-            repelledCube.layer = originalLayer; 
+            repelledCube.layer = originalLayer;
         }
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, repulsionRadius);
+        Gizmos.DrawWireSphere(transform.position, cubeConfig.repulsionRadius);
     }
 }

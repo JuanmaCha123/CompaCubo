@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class C_cubeAtractor : MonoBehaviour
 {
-    public float attractionRadius = 5f;
-    public LayerMask cubeLayer;
-    public float distanceFromPlayer = 0.2f;
+    public Cube_ConfigData cubeConfig;
 
     private Transform playerTransform;
     private bool isCubeAttached = false;
@@ -33,24 +31,23 @@ public class C_cubeAtractor : MonoBehaviour
 
         if (isCubeAttached && attachedCube != null)
         {
-            
-            float direction = playerTransform.localScale.x; 
-            attachedCube.transform.position = playerTransform.position + new Vector3(direction * distanceFromPlayer, 0, 0);
+            float direction = playerTransform.localScale.x;
+            attachedCube.transform.position = playerTransform.position + new Vector3(direction * cubeConfig.distanceFromPlayer, 0, 0);
         }
     }
 
     void AttachCube()
     {
-        Collider2D[] cubes = Physics2D.OverlapCircleAll(playerTransform.position, attractionRadius, cubeLayer);
+        Collider2D[] cubes = Physics2D.OverlapCircleAll(playerTransform.position, cubeConfig.attractionRadius, cubeConfig.cubeLayer);
 
         if (cubes.Length > 0)
         {
-            Collider2D cube = cubes[0]; 
+            Collider2D cube = cubes[0];
             attachedCube = cube.gameObject;
             isCubeAttached = true;
 
-            float direction = playerTransform.localScale.x; 
-            Vector3 newPosition = playerTransform.position + new Vector3(direction * distanceFromPlayer, 0, 0);
+            float direction = playerTransform.localScale.x;
+            Vector3 newPosition = playerTransform.position + new Vector3(direction * cubeConfig.distanceFromPlayer, 0, 0);
             attachedCube.transform.position = newPosition;
         }
     }
@@ -67,6 +64,6 @@ public class C_cubeAtractor : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, attractionRadius);
+        Gizmos.DrawWireSphere(transform.position, cubeConfig.attractionRadius);
     }
 }

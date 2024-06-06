@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class E_damage : MonoBehaviour
 {
-    public int damageAmount = 10; // La cantidad de daño que el enemigo inflige al jugador
+    public int damageAmount;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Verificar si el enemigo colisiona con el jugador
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Obtener el componente PlayerHealth del jugador y aplicarle daño
-            C_Health playerHealth = collision.gameObject.GetComponent<C_Health>();
-            if (playerHealth != null)
+            C_Health playerHealthData = collision.gameObject.GetComponent<C_Health>();
+            if (playerHealthData != null)
             {
-                playerHealth.TakeDamage(damageAmount);
+                playerHealthData.TakeDamage(damageAmount);
             }
         }
     }

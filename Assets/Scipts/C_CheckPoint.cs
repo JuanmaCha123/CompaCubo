@@ -5,31 +5,37 @@ using UnityEngine;
 public class C_CheckPoint : MonoBehaviour
 {
     private Vector3 currentCheckpoint;
-    private C_Health playerHealth;
-
+    public C_HealthData healthData; 
     void Start()
     {
-        playerHealth = GetComponent<C_Health>();
         currentCheckpoint = transform.position;
 
-       
+        if (healthData != null)
+        {
+            healthData.currentHealth = healthData.maxHealth;
+        }
     }
+
     void Update()
     {
-        if (playerHealth.currentHealth <= 0)
+        if (healthData != null && healthData.currentHealth <= 0)
         {
             Respawn();
         }
     }
-    public void SetCheckpoint(Vector3 newCheckpoint)
-        {
-            currentCheckpoint = newCheckpoint;
-        }
 
-        public void Respawn()
+    public void SetCheckpoint(Vector3 newCheckpoint)
+    {
+        currentCheckpoint = newCheckpoint;
+    }
+
+    public void Respawn()
+    {
+        transform.position = currentCheckpoint;
+        if (healthData != null)
         {
-            transform.position = currentCheckpoint;
-            playerHealth.currentHealth = playerHealth.maxHealth;
+            healthData.currentHealth = healthData.maxHealth;
         }
-   }
+    }
+}
 
