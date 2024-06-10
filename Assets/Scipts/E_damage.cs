@@ -13,7 +13,8 @@ public class E_damage : MonoBehaviour
             C_Health playerHealthData = collision.gameObject.GetComponent<C_Health>();
             if (playerHealthData != null)
             {
-                playerHealthData.TakeDamage(damageAmount);
+                collision.gameObject.GetComponent<C_Health>().damageAmount = damageAmount;
+                UI_Manager.Instance.PlayerWasDamaged.Invoke();
             }
         }
     }

@@ -14,7 +14,8 @@ public class Trap_damage : MonoBehaviour
             C_Health playerHealth = collision.gameObject.GetComponent<C_Health>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(damageAmount);
+                collision.gameObject.GetComponent<C_Health>().damageAmount = damageAmount;
+                UI_Manager.Instance.PlayerWasDamaged.Invoke();
             }
         }
     }

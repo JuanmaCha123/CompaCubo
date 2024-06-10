@@ -12423,6 +12423,7 @@ GameObject:
   - component: {fileID: 1189965583}
   - component: {fileID: 1189965582}
   - component: {fileID: 1189965581}
+  - component: {fileID: 1189965585}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12515,6 +12516,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1189965585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189965580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5458757d0dcedb149b819ba6ce0124f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoseLife:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6565033336473383526}
+        m_TargetAssemblyTypeName: C_lives, Assembly-CSharp
+        m_MethodName: DecreaseLives
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  PlayerDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1926577443}
+        m_TargetAssemblyTypeName: C_Health, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  PlayerWasDamaged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1926577443}
+        m_TargetAssemblyTypeName: C_Health, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1263048726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14466,3 +14524,14 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 6acda33d638f2f54da460f2b8d741181, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6812906d3df672441806ada9cb14d084, type: 3}
+--- !u!114 &6565033336473383526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 191257327405605093, guid: 6812906d3df672441806ada9cb14d084, type: 3}
+  m_PrefabInstance: {fileID: 6565033336473383525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d690de7d97fb46408852976ba7f5e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

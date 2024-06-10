@@ -8,6 +8,7 @@ public class C_Health : MonoBehaviour
     private int currentHealth;
     private Coroutine healthRegenCoroutine;
     private C_lives playerLives;
+    public int damageAmount;
 
     void Start()
     {
@@ -16,13 +17,13 @@ public class C_Health : MonoBehaviour
         playerLives = GetComponent<C_lives>();
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage()
     {
         currentHealth -= damageAmount;
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            playerLives.DecreaseLives();
+            UI_Manager.Instance.PlayerDeath.Invoke();
         }
     }
 
@@ -43,10 +44,10 @@ public class C_Health : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         Debug.Log("Player has died");
-        playerLives.DecreaseLives();
+        UI_Manager.Instance.LoseLife.Invoke();
     }
 
 }
