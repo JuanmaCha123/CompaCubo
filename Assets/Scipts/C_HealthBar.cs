@@ -18,6 +18,11 @@ public class C_HealthBar : MonoBehaviour
 
     void Update()
     {
+        
+    }
+
+    public void UpdateHealth()
+    {
         if (healthBarImage != null && playerHealthData != null)
         {
             // Actualizar la cantidad de relleno de la barra de salud basada en la salud actual del jugador

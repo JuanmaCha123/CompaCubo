@@ -21,7 +21,8 @@ public class C_lives : MonoBehaviour
     public void DecreaseLives()
     {
         currentLives--;
-        UpdateLivesUI();
+        //UpdateLivesUI();
+        UI_Manager.Instance.PlayerLostLife.Invoke();
 
         if (currentLives <= 0)
         {
@@ -29,7 +30,7 @@ public class C_lives : MonoBehaviour
         }
     }
 
-    void UpdateLivesUI()
+    public void UpdateLivesUI()
     {
         textMeshPro.text = $" {currentLives} " ;
     }

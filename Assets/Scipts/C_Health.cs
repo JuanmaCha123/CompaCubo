@@ -25,6 +25,7 @@ public class C_Health : MonoBehaviour
             currentHealth = 0;
             UI_Manager.Instance.PlayerDeath.Invoke();
         }
+        UI_Manager.Instance.PlayerTookDamage.Invoke();
     }
 
     private IEnumerator RegenerateHealth()

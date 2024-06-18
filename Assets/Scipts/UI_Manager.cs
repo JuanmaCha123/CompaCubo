@@ -6,9 +6,15 @@ using UnityEngine.Events;
 public class UI_Manager : MonoBehaviour
 {
 
+<<<<<<< Updated upstream
     public UnityEvent LoseLife;
     public UnityEvent PlayerDeath;
     public UnityEvent PlayerWasDamaged;
+=======
+    public UnityEvent PlayerTookDamage;
+    public UnityEvent PlayerLostLife;
+
+>>>>>>> Stashed changes
     public static UI_Manager Instance;
 
     private void Awake()
@@ -21,6 +27,7 @@ public class UI_Manager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+<<<<<<< Updated upstream
     // Start is called before the first frame update
     void Start()
     {
@@ -32,4 +39,6 @@ public class UI_Manager : MonoBehaviour
     {
         
     }
+=======
+>>>>>>> Stashed changes
 }
